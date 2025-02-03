@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <script src="crearTabla.js"></script>
+</head>
+<body>
+    <script>
+        fetch("/songs")
+        .then(data => data.json())
+        .then(songs => {
+            createTable(songs, (tr, item) => {
+                if(item["genre"] === "Rock") tr.style.background = "green";
+                if(item["genre"] === "Pop") tr.style.background = "red";
+                if(item["genre"] === "Hip-Hop") tr.style.background = "blue";
+                if(item["genre"] === "Jazz") tr.style.background = "purple";
+                if(item["genre"] === "Blues") tr.style.background = "navy";
+                if(item["genre"] === "Country") tr.style.background = "brown";
+                if(item["genre"] === "Reggae") tr.style.background = "yellow";
+                if(item["genre"] === "Classical") tr.style.background = "grey";
+                if(item["genre"] === "Electronic") tr.style.background = "orange";
+                if(item["genre"] === "Folk") tr.style.background = "pink";
+            })
+        })
+    </script>
+</body>
+</html>

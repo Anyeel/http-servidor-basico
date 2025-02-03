@@ -4,77 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
+    <script src="crearTabla.js"></script>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <td>Nombre</td>
-                <td>Email</td>
-                <td>Password</td>
-                <td>Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Pepito</td>
-                <td>Superpassword</td>
-                <td>pepito@gmail.com</td>
-                <td>activo</td>
-            </tr>
-            <tr>
-                <td>Pepito</td>
-                <td>Superpassword</td>
-                <td>pepito@gmail.com</td>
-                <td>activo</td>
-            </tr>
-        </tbody>
-    </table>
     <script>
         fetch("/users")
         .then(data => data.json())
-        .then(usuarios => {
-            console.log(usuarios)
-            
-
+        .then(users => {
+            createTable(users, (tr, item) => {
+                if(item["status"] === "active") tr.style.background = "green"
+                if(item["status"] === "inactive") tr.style.background = "red"
+            })
         })
-
-
-
-
-
-
-
-        // fetch("/users")
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         const keys = Object.keys(data[0]);
-        //         const table = document.createElement("table");
-        //         const thead = document.createElement("thead");
-        //         const tbody = document.createElement("tbody");
-        //         const tr = document.createElement("tr");
-        //         keys.forEach(key => {
-        //             const th = document.createElement("th");
-        //             th.textContent = key;
-        //             tr.appendChild(th);
-        //         });
-        //         thead.appendChild(tr);
-        //         table.appendChild(thead);
-
-        //         data.forEach(user => {
-        //             const tr = document.createElement("tr");
-        //             keys.forEach(key => {
-        //                 const td = document.createElement("td");
-        //                 td.textContent = user[key];
-        //                 tr.appendChild(td);
-        //             });
-        //             tbody.appendChild(tr);
-        //         });
-
-        //         table.appendChild(tbody);
-        //         document.body.appendChild(table);
-        //     });
     </script>
 </body>
 </html>
